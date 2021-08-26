@@ -6,7 +6,7 @@
       </div>
       <div class="back">
         <h2><%= p.user.name %></h2>
-        <p><%= p.content %></p>
+        <p><%= hashtag(p.content) %></p>
         <span>
           <%= link_to repost_path(p.id), method: :post do %>
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-recycle" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
