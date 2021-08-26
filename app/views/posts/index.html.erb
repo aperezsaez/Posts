@@ -1,0 +1,23 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <%= render "form" %>
+  </div>
+<% end %>
+
+<div class="container-fluid pt-5 mt-5">
+  <div class="row">
+    <%= render "posts" %>
+  </div>
+</div>
+
+<div class="container text-left py-5">
+  <% if @posts.current_page == 1 %>
+    <%= render 'next_page_btn' %>
+  <% elsif @posts.total_pages == @posts.current_page %>
+    <%= render 'prev_page_btn' %>
+  <% else %>
+    <%= render 'next_page_btn' %>
+    <span>----</span>
+    <%= render 'prev_page_btn' %>
+  <% end %>
+</div>

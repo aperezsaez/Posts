@@ -1,0 +1,20 @@
+<div class="container">
+  <figure class="snip1344">
+    <img src="<%= @post.user.photo%>" alt="profile-sample1" class="background"/><img src="<%= @post.user.photo%>" alt="profile-sample1" class="profile"/>
+    <figcaption>
+      <h3><%= @post.user.name %><span><%= @post.user.email %></span></h3>
+      <div class="icons"><%= @post.content %></div>
+    </figcaption>
+  </figure>
+  <br>
+  <hr>
+  <h4 class= "py-5">Personas que le dan hado like</h4>
+  <div class="row">
+    <% @post_likes.each do |pl| %>
+      <div class="col-3">
+        <%= image_tag pl.user.photo, class: 'img-fluid user_photo' %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

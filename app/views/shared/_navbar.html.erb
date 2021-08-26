@@ -1,0 +1,43 @@
+<div class="navigation-wrap bg-light start-header start-style">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<nav class="navbar navbar-expand-md navbar-light">
+					
+						<a class="navbar-brand" href="<%= root_path %>"><img src="https://pbs.twimg.com/profile_images/1774233686/twitter_bird_400x400.png" alt=""></a>	
+						
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto py-4 py-md-0">
+								<% if user_signed_in? %>
+									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+										<a class="nav-link" href="#"><%= image_tag current_user.photo, class: 'nav-user-photo' %></a>
+									</li>
+									<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+										<a class="nav-link" href="#"><%= current_user.name %></a>
+									</li>
+								<% end %>
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+									<div class="dropdown-menu">
+                    <% if user_signed_in? %>
+                      <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+										  <a class="dropdown-item" href="#">Andate a tu perfil</a>
+                      <a class="dropdown-item" href="#">Amigos</a>
+                    <% else %>
+                      <%= link_to 'Iniciar sesión', new_user_session_path, class: 'dropdown-item' %>
+                      <%= link_to 'Registrarse', new_user_registration_path, class: 'dropdown-item' %>
+                    <% end %>
+									</div>
+								</li>
+							</ul>
+						</div>
+						
+					</nav>		
+				</div>
+			</div>
+		</div>
+	</div>

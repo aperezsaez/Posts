@@ -1,0 +1,54 @@
+<% @posts.each do |p| %>
+  <div class="col-md-4">
+    <div class="flip">
+      <div class="front" style="background-image: url(<%= p.user.photo%>)">
+        <h1 class="text-shadow"><%= p.user.name %></h1>
+      </div>
+      <div class="back">
+        <h2><%= p.user.name %></h2>
+        <p><%= p.content %></p>
+        <span>
+          <%= link_to repost_path(p.id), method: :post do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-recycle" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 17l-2 2l2 2m-2 -2h9a2 2 0 0 0 1.75 -2.75l-.55 -1" />
+                <path d="M12 17l-2 2l2 2m-2 -2h9a2 2 0 0 0 1.75 -2.75l-.55 -1" transform="rotate(120 12 13)" />
+                <path d="M12 17l-2 2l2 2m-2 -2h9a2 2 0 0 0 1.75 -2.75l-.55 -1" transform="rotate(240 12 13)" />
+            </svg>
+          <% end %>
+          <span><%= p.reposts.count %></span>
+        </span>
+        <span>
+          <% if @user_likes.include? p.id %>
+            <%= link_to dislike_path(p.id), method: :delete do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-broken" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                <path d="M12 7l-2 4l4 3l-2 4v3" />
+              </svg>
+            <% end %>
+          <% else %>
+            <%= link_to like_path(p.id) do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart" width="28" height="28" viewBox="0 0 24 24" stroke-width="2" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428m0 0a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+              </svg>
+            <% end %>
+          <% end %>
+        </span>
+        <span><%= p.likes.count %></span>
+        <% if p.post_id.present? %>
+          <h6>
+            <span>Reposteado desde el post del usuario: </span>
+            <strong>
+              <%= p.original_post.user.name %>
+            </strong>
+          </h6>
+        <% end %>
+        <%= link_to post_detail_path(p.id) do %>
+          <%= distance_of_time_in_words(Time.now, p.created_at) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
