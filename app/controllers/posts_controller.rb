@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.eager_load(:user, :likes).order(created_at: :desc).page params[:page]
+    if params[:q]
+      @posts = Post.where('content LIKE ?', "%#{params[:q]}%").order(created_at: :desc).page params[:page]
+    else
+      @posts = Post.eager_load(:user, :likes).order(created_at: :desc).page params[:page]
+    end
     @post = Post.new
     @user_likes = Like.eager_load(:user, :post).where(user: current_user).pluck(:post_id)
   end

@@ -6,6 +6,11 @@
 					
 						<a class="navbar-brand" href="<%= root_path %>"><img src="https://pbs.twimg.com/profile_images/1774233686/twitter_bird_400x400.png" alt=""></a>	
 						
+						<%= form_with(url: root_path, method: :get, local: :true, class: 'form-inline my-2 my-lg-0') do  %>
+							<%= text_field_tag :q, "", class:'form-control mr-sm-2' %>
+							<%= submit_tag("Search", class: 'btn btn-outline-success my-2 my-sm-0') %>
+						<% end %>
+
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
